@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct FitnessTrackerAppApp: App {
-    let coreDataManager = CoreDataManager.shared
+    private let coreDataManager = CoreDataManager.shared
 
     var body: some Scene {
         WindowGroup {

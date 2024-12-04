@@ -1,8 +1,8 @@
 //
 //  CoreDataManager.swift
-//  FitnessTrackApp
+//  FitnessTrackerApp
 //
-//  Created by Rathi Shetty on 02/12/24.
+//  Created by Rathi Shetty on 04/12/24.
 //
 import Foundation
 import CoreData
@@ -13,7 +13,7 @@ class CoreDataManager {
     var context: NSManagedObjectContext { container.viewContext }
     
     private init() {
-        container = NSPersistentContainer(name: "FitnessAppModel")
+        container = NSPersistentContainer(name: "FitnessTrackerApp")
         container.loadPersistentStores { _, error in
             if let error = error {
                 fatalError("Core Data load error: \(error)")
