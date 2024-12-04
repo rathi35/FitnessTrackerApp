@@ -7,37 +7,111 @@
 
 import XCTest
 
-final class FitnessTrackerAppUITests: XCTestCase {
-
+final class FitnessAppUITests: XCTestCase {
+    let app = XCUIApplication()
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    @MainActor
-    func testExample() throws {
-        // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
-
-    @MainActor
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+    
+    override func tearDown() {
+        Springboard.deleteApp()
+        super.tearDown()
+    }
+    
+    func testLoginSuccess() {
+        // Navigate to Login Screen
+        let emailField = app.textFields["Email"]
+        let passwordField = app.secureTextFields["Password"]
+        let loginButton = app.buttons["Login"]
+        
+        // Enter valid credentials
+        emailField.tap()
+        emailField.typeText("test@example.com")
+        
+        passwordField.tap()
+        passwordField.typeText("password")
+        
+        loginButton.tap()
+        
+        let _ = app.buttons["Logout"].waitForExistence(timeout: 1.0)
+        
+        // Verify successful login (e.g., navigating to the main app view)
+        XCTAssertTrue(app.buttons["Logout"].exists)
+    }
+    
+    func testLoginFailure() {
+        let emailField = app.textFields["Email"]
+        let passwordField = app.secureTextFields["Password"]
+        let loginButton = app.buttons["Login"]
+        
+        // Enter invalid credentials
+        emailField.tap()
+        emailField.typeText("wrong@example.com")
+        
+        passwordField.tap()
+        passwordField.typeText("wrongpassword")
+        
+        loginButton.tap()
+        
+        sleep(1)
+        
+        // Verify error message
+        let errorMessage = app.staticTexts["Invalid credentials, please check your email/password."]
+        XCTAssertTrue(errorMessage.exists)
+    }
+    
+    func testSignUpSuccess() {
+        // Navigate to SignUp Screen
+        app.buttons["Don't have an account? Sign Up"].tap()
+        
+        let emailField = app.textFields["Email"]
+        let passwordField = app.secureTextFields["Password"]
+        let confirmPasswordField = app.secureTextFields["Confirm Password"]
+        let signUpButton = app.buttons["Sign Up"]
+        
+        // Enter valid details
+        emailField.tap()
+        emailField.typeText("newuser5@example.com")
+        
+        passwordField.tap()
+        passwordField.typeText("password")
+        
+        confirmPasswordField.tap()
+        confirmPasswordField.typeText("password")
+        
+        signUpButton.tap()
+        
+        sleep(3)
+        
+        // Verify successful sign-up (e.g., navigating to the main app view)
+        XCTAssertTrue(app.buttons["Logout"].exists)
+    }
+    
+    func testSignUpFailure() {
+        app.buttons["Don't have an account? Sign Up"].tap()
+        
+        let emailField = app.textFields["Email"]
+        let passwordField = app.secureTextFields["Password"]
+        let confirmPasswordField = app.secureTextFields["Confirm Password"]
+        let signUpButton = app.buttons["Sign Up"]
+        
+        // Enter invalid details (e.g., mismatched passwords)
+        emailField.tap()
+        emailField.typeText("newuser@example.com")
+        
+        passwordField.tap()
+        passwordField.typeText("password")
+        
+        confirmPasswordField.tap()
+        confirmPasswordField.typeText("differentpassword")
+        
+        signUpButton.tap()
+        
+        // Verify error message
+        let errorMessage = app.staticTexts["Passwords do not match."]
+        XCTAssertTrue(errorMessage.exists)
     }
 }

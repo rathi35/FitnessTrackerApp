@@ -57,7 +57,7 @@
 		8A867DED2D00576D00AB05E1 /* Exceptions for "FitnessTrackerAppTests" folder in "FitnessTrackerApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				MockFirebaseManager.swift,
+				Mock/MockFirebaseManager.swift,
 			);
 			target = 8ABBD4342D00225300DDB2C1 /* FitnessTrackerApp */;
 		};

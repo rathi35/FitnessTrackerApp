@@ -31,12 +31,14 @@ struct SignUpView: View {
                 .padding(.horizontal)
 
             SecureField("Password", text: $password)
+                .textContentType(.none)
                 .padding()
                 .background(Color(.systemGray6))
                 .cornerRadius(10)
                 .padding(.horizontal)
 
             SecureField("Confirm Password", text: $confirmPassword)
+                .textContentType(.none)
                 .padding()
                 .background(Color(.systemGray6))
                 .cornerRadius(10)

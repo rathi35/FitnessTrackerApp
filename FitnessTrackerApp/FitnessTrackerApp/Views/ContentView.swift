@@ -15,12 +15,14 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             if viewModel.isAuthenticated {
-            Button("Logout") {
+                Button("Logout") {
                     viewModel.signOut()
                 }
             } else {
                 LoginView(authViewModel: viewModel)  // Show LoginView if not authenticated
             }
+        }.onAppear {
+            viewModel.isAuthenticated = Auth.auth().currentUser != nil
         }
     }
 }

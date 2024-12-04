@@ -17,21 +17,21 @@ protocol FirebaseManagerProtocol {
 
 @MainActor
 class AuthViewModel: ObservableObject {
-    var isAuthenticated: Bool {
-        firebaseManager.isLoggedIn()
-    }
+    @Published var isAuthenticated: Bool = false
     @Published var errorMessage: String? = nil
 
     private let firebaseManager: FirebaseManagerProtocol
     
     init(firebaseManager: FirebaseManagerProtocol = FirebaseManager.shared) {
         self.firebaseManager = firebaseManager
+        self.isAuthenticated = firebaseManager.isLoggedIn()
     }
 
     /// Logs in a user
     func signIn(email: String, password: String) async {
         do {
             try await firebaseManager.signIn(email: email, password: password)
+            isAuthenticated = true
         } catch {
             handleAuthError(error)
         }
@@ -41,6 +41,7 @@ class AuthViewModel: ObservableObject {
     func signUp(email: String, password: String) async {
         do {
             try await firebaseManager.signUp(email: email, password: password)
+            isAuthenticated = true
         } catch {
             handleAuthError(error)
         }
@@ -50,6 +51,7 @@ class AuthViewModel: ObservableObject {
     func signOut() {
         do {
             try firebaseManager.signOut()
+            isAuthenticated = false
         } catch {
             handleAuthError(error)
         }
@@ -58,6 +60,7 @@ class AuthViewModel: ObservableObject {
     
     // Error handling method to handle Firebase error codes
     private func handleAuthError(_ error: Error) {
+        isAuthenticated = false
         let authError = error as NSError
         switch authError.code {
         case AuthErrorCode.userNotFound.rawValue:
