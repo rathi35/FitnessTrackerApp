@@ -1,0 +1,22 @@
+# Xcode
+.DS_Store
+build/
+DerivedData/
+*.xcworkspace
+xcuserdata/
+xcdebugger/
+*.xccheckout
+*.moved-aside
+*.xcuserstate
+
+
+# Swift Package Manager
+.swiftpm/
+.build/
+
+
+# Temporary files
+*.swp
+*.swo
+*.tmp
+*.log
