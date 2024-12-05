@@ -8,12 +8,15 @@
 import XCTest
 
 final class FitnessAppUITests: XCTestCase {
-    let app = XCUIApplication()
+    var app = XCUIApplication()
     
     override func setUpWithError() throws {
         continueAfterFailure = false
-        let app = XCUIApplication()
+        app = XCUIApplication()
         app.launch()
+        if app.buttons["Logout"].exists {
+            app.buttons["Logout"].tap()
+        }
     }
     
     override func tearDown() {
@@ -36,7 +39,7 @@ final class FitnessAppUITests: XCTestCase {
         
         loginButton.tap()
         
-        let _ = app.buttons["Logout"].waitForExistence(timeout: 1.0)
+        _ = app.buttons["Logout"].waitForExistence(timeout: 1.0)
         
         // Verify successful login (e.g., navigating to the main app view)
         XCTAssertTrue(app.buttons["Logout"].exists)
@@ -56,7 +59,7 @@ final class FitnessAppUITests: XCTestCase {
         
         loginButton.tap()
         
-        sleep(1)
+        _ = app.staticTexts["Invalid credentials, please check your email/password."].waitForExistence(timeout: 3.0)
         
         // Verify error message
         let errorMessage = app.staticTexts["Invalid credentials, please check your email/password."]
@@ -84,7 +87,7 @@ final class FitnessAppUITests: XCTestCase {
         
         signUpButton.tap()
         
-        sleep(3)
+        _ = app.buttons["Logout"].waitForExistence(timeout: 3.0)
         
         // Verify successful sign-up (e.g., navigating to the main app view)
         XCTAssertTrue(app.buttons["Logout"].exists)
@@ -109,6 +112,8 @@ final class FitnessAppUITests: XCTestCase {
         confirmPasswordField.typeText("differentpassword")
         
         signUpButton.tap()
+        
+        _ = app.staticTexts["Passwords do not match."].waitForExistence(timeout: 3.0)
         
         // Verify error message
         let errorMessage = app.staticTexts["Passwords do not match."]
