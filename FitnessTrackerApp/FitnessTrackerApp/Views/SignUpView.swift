@@ -8,20 +8,21 @@
 import SwiftUI
 
 struct SignUpView: View {
+    @Environment(\.dismiss) var dismiss
     @ObservedObject var authViewModel: AuthViewModel
     @State private var email = ""
     @State private var password = ""
     @State private var confirmPassword = ""
     @State private var isLoading = false
-
+    
     var body: some View {
         VStack(spacing: 20) {
             Spacer()
-
+            
             Text("Sign Up")
                 .font(.largeTitle)
                 .bold()
-
+            
             TextField("Email", text: $email)
                 .keyboardType(.emailAddress)
                 .autocapitalization(.none)
@@ -29,28 +30,28 @@ struct SignUpView: View {
                 .background(Color(.systemGray6))
                 .cornerRadius(10)
                 .padding(.horizontal)
-
+            
             SecureField("Password", text: $password)
                 .textContentType(.none)
                 .padding()
                 .background(Color(.systemGray6))
                 .cornerRadius(10)
                 .padding(.horizontal)
-
+            
             SecureField("Confirm Password", text: $confirmPassword)
                 .textContentType(.none)
                 .padding()
                 .background(Color(.systemGray6))
                 .cornerRadius(10)
                 .padding(.horizontal)
-
+            
             if let errorMessage = authViewModel.errorMessage {
                 Text(errorMessage)
                     .foregroundColor(.red)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
             }
-
+            
             Button(action: {
                 Task {
                     guard password == confirmPassword else {
@@ -75,12 +76,12 @@ struct SignUpView: View {
                         .padding(.horizontal)
                 }
             }
-            NavigationLink("Already have an account? Login", destination: LoginView(authViewModel: authViewModel))
-                .padding()
-                .foregroundColor(.purple)
-
+            Button("Already have an account? Login") {
+                dismiss()
+            }
+            .padding()
+            .foregroundColor(.purple)
             Spacer()
         }
-        .navigationBarHidden(true)
     }
 }

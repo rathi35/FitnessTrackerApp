@@ -69,6 +69,6 @@ struct LoginView: View {
 
             Spacer()
         }
-        .navigationBarHidden(true)
+        .navigationTitle("Fitness Tracker")
     }
 }
