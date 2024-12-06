@@ -50,7 +50,9 @@
 			membershipExceptions = (
 				CoreData/FitnessTrackerApp.xcdatamodeld,
 				"Resources/GoogleService-Info.plist",
+				Services/CoreDataManager.swift,
 				Services/FirebaseManager.swift,
+				Services/HealthKitManager.swift,
 				ViewModels/AuthViewModel.swift,
 				ViewModels/WorkoutsGoalsViewModel.swift,
 			);

@@ -16,7 +16,6 @@ struct ProfileView: View {
         NavigationView {
             VStack(spacing: 20) {
                 
-                
                 if let currentUser = Auth.auth().currentUser {
                     if let photoURL = currentUser.photoURL  {
                         AsyncImage(url: photoURL)
