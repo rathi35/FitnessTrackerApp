@@ -8,7 +8,6 @@
 import SwiftUI
 import FirebaseAuth
 
-
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @StateObject private var authViewModel = AuthViewModel()

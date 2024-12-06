@@ -59,4 +59,20 @@ class AuthViewModelTests: XCTestCase {
         XCTAssertFalse(viewModel.isAuthenticated)
         XCTAssertEqual(viewModel.errorMessage, "The email address is already in use by another account.")
     }
+    
+    func testssignOutSuccess() async {
+        mockFirebaseManager.shouldFail = false
+        
+        viewModel.signOut()
+        XCTAssertFalse(viewModel.isAuthenticated)
+        XCTAssertNil(viewModel.errorMessage)
+    }
+    
+    func testssignOutFailure() async {
+        mockFirebaseManager.shouldFail = true
+        
+        viewModel.signOut()
+        XCTAssertFalse(viewModel.isAuthenticated)
+        XCTAssertEqual(viewModel.errorMessage, "An error occurred. Please try again.")
+    }
 }
