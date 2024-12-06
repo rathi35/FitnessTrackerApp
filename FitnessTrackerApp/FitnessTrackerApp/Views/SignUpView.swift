@@ -17,6 +17,10 @@ struct SignUpView: View {
     
     var body: some View {
         VStack(spacing: 20) {
+            Text("Welcome to Fitness Tracking")
+                .font(.title)
+                .foregroundColor(.purple)
+                .padding(20)
             Spacer()
             
             Text("Sign Up")
@@ -82,6 +86,10 @@ struct SignUpView: View {
             .padding()
             .foregroundColor(.purple)
             Spacer()
+        }
+        .navigationBarBackButtonHidden(true)
+        .onAppear() {
+            authViewModel.errorMessage = ""
         }
     }
 }

@@ -8,6 +8,13 @@
 import Foundation
 import FirebaseAuth
 
+protocol FirebaseManagerProtocol {
+    func signIn(email: String, password: String) async throws
+    func signUp(email: String, password: String) async throws
+    func signOut() throws
+    func isLoggedIn() -> Bool
+}
+
 class FirebaseManager: FirebaseManagerProtocol {
     static let shared = FirebaseManager()
 

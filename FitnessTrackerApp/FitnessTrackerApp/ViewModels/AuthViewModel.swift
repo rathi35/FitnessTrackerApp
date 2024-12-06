@@ -8,20 +8,16 @@
 import SwiftUI
 import FirebaseAuth
 
-protocol FirebaseManagerProtocol {
-    func signIn(email: String, password: String) async throws
-    func signUp(email: String, password: String) async throws
-    func signOut() throws
-    func isLoggedIn() -> Bool
-}
-
 @MainActor
 class AuthViewModel: ObservableObject {
+    // MARK: - Published Properties
     @Published var isAuthenticated: Bool = false
     @Published var errorMessage: String? = nil
 
+    // MARK: - Dependencies
     private let firebaseManager: FirebaseManagerProtocol
     
+    // MARK: - Initializer
     init(firebaseManager: FirebaseManagerProtocol = FirebaseManager.shared) {
         self.firebaseManager = firebaseManager
         self.isAuthenticated = firebaseManager.isLoggedIn()

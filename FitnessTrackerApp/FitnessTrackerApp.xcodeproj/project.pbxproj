@@ -48,9 +48,11 @@
 		8A867DE12D00558200AB05E1 /* Exceptions for "FitnessTrackerApp" folder in "FitnessTrackerAppTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				CoreData/FitnessTrackerApp.xcdatamodeld,
 				"Resources/GoogleService-Info.plist",
 				Services/FirebaseManager.swift,
 				ViewModels/AuthViewModel.swift,
+				ViewModels/WorkoutsGoalsViewModel.swift,
 			);
 			target = 8ABBD44A2D00225400DDB2C1 /* FitnessTrackerAppTests */;
 		};
@@ -64,7 +66,11 @@
 		8A867E792D005B5800AB05E1 /* Exceptions for "FitnessTrackerApp" folder in "FitnessTrackerApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				AppDelegate.swift,
+				"CoreData/GoalEntity+CoreDataClass.swift",
+				"CoreData/GoalEntity+CoreDataProperties.swift",
+				"CoreData/WorkoutEntity+CoreDataClass.swift",
+				"CoreData/WorkoutEntity+CoreDataProperties.swift",
+				Info.plist,
 			);
 			target = 8ABBD4342D00225300DDB2C1 /* FitnessTrackerApp */;
 		};
@@ -576,6 +582,9 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FitnessTrackerApp/Info.plist;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app needs access to your health data to track calories burned.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app needs access to update your health data for progress tracking.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -617,6 +626,9 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FitnessTrackerApp/Info.plist;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app needs access to your health data to track calories burned.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app needs access to update your health data for progress tracking.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
