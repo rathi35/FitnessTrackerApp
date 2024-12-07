@@ -53,6 +53,9 @@ struct GoalsView: View {
             .sheet(isPresented: $showGoalDetail) {
                     GoalDetailView(viewModel: viewModel, goal: $selectedGoal)
             }
+            .onAppear {
+                selectedGoal = viewModel.goals.first
+            }
         }
     }
 
