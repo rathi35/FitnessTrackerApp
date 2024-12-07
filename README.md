@@ -2,7 +2,7 @@
 
 ## Overview
 
-FitnessTrackerApp is an iOS app that helps users track their workouts, manage goals, and monitor their progress. The app integrates with Firebase for authentication and HealthKit for tracking health-related data.
+The FitnessTrackerApp helps users set, track, and achieve their fitness goals. With intuitive features and a user-friendly interface, it enables logging workouts, managing goals, and monitoring progress visually. It leverages modern technologies like Firebase Authentication for secure user management, Core Data for offline storage
 
 ## Features
 - Set Goals:
