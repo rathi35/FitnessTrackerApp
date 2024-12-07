@@ -41,6 +41,7 @@ struct DashboardView: View {
                     Text("Profile")
                 }
         }
+        .tint(.purple)
         .onAppear {
             workoutsGoalsViewModel.requestHealthKitPermission() // Request permission when the view appears
         }

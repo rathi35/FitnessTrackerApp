@@ -11,7 +11,8 @@ import CoreData
 protocol CoreDataManagerProtocol {
     var context: NSManagedObjectContext { get }
     func save() throws
-    func fetch<T: NSFetchRequestResult>(_ request: NSFetchRequest<T>) throws -> [T]
+    func fetchWorkouts(for email: String) -> [WorkoutEntity]
+    func fetchGoals(for email: String) -> [GoalEntity]
 }
 
 /// Manages Core Data stack and operations
@@ -22,7 +23,7 @@ final class CoreDataManager: CoreDataManagerProtocol {
     // MARK: - Persistent Container
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "FitnessTrackerApp")
-    
+        
         container.loadPersistentStores { storeDescription, error in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -47,15 +48,27 @@ final class CoreDataManager: CoreDataManagerProtocol {
         }
     }
     
-    // MARK: - Fetch Data
-    /// Fetch data from Core Data
-    /// - Parameter request: The fetch request
-    /// - Returns: An array of results
-    func fetch<T: NSFetchRequestResult>(_ request: NSFetchRequest<T>) throws -> [T] {
+    // Fetch workouts for a specific email
+    func fetchWorkouts(for email: String) -> [WorkoutEntity] {
+        let fetchRequest: NSFetchRequest<WorkoutEntity> = WorkoutEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "email == %@", email)
         do {
-            return try context.fetch(request)
+            return try context.fetch(fetchRequest)
         } catch {
-            throw error
+            print("Error fetching workouts: \(error.localizedDescription)")
+            return []
+        }
+    }
+    
+    // Fetch goals for a specific email
+    func fetchGoals(for email: String) -> [GoalEntity] {
+        let fetchRequest: NSFetchRequest<GoalEntity> = GoalEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "email == %@", email)
+        do {
+            return try context.fetch(fetchRequest)
+        } catch {
+            print("Error fetching goals: \(error.localizedDescription)")
+            return []
         }
     }
 }

@@ -22,7 +22,7 @@ struct GoalDetailView: View {
                         VStack(spacing: 8) {
                             Text(goal.name ?? "Untitled Goal")
                                 .font(.system(size: 28, weight: .bold))
-                                .foregroundColor(.blue)
+                                .foregroundColor(.purple)
                                 .multilineTextAlignment(.center)
                             
                             Text("Target: \(goal.target, specifier: "%.2f")")
@@ -57,7 +57,7 @@ struct GoalDetailView: View {
                                 .font(.headline)
                             
                             Slider(value: $progress, in: 0...goal.target, step: 0.1)
-                                .accentColor(.blue)
+                                .accentColor(.purple)
                             
                             HStack {
                                 Text("0")
@@ -82,7 +82,7 @@ struct GoalDetailView: View {
                             .padding()
                             .frame(maxWidth: .infinity)
                             .background(progressColor)
-                            .foregroundColor(.white)
+                            .foregroundColor(.purple)
                             .cornerRadius(12)
                         }
                         .padding(.horizontal)

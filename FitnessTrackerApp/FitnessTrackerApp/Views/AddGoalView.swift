@@ -35,7 +35,7 @@ struct AddGoalView: View {
                             Spacer()
                             if selectedWorkouts.contains(workout) {
                                 Image(systemName: "checkmark")
-                                    .foregroundColor(.blue)
+                                    .foregroundColor(.purple)
                             }
                         }
                         .contentShape(Rectangle()) // Make the entire row tappable
@@ -63,7 +63,7 @@ struct AddGoalView: View {
                         .font(.headline)
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.blue)
+                        .background(Color.purple)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }

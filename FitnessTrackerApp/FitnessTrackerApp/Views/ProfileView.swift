@@ -32,12 +32,12 @@ struct ProfileView: View {
                             .bold()
                     }
                     Text(currentUser.email ?? "Email not available")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
+                        .font(.title)
+                        .foregroundColor(.purple)
                     
                 } else {
                     Text("No user information available")
-                        .foregroundColor(.red)
+                        .foregroundColor(.purple)
                 }
                 
                 Spacer()
@@ -48,7 +48,6 @@ struct ProfileView: View {
                     Text("Logout")
                         .bold()
                         .padding()
-                        .frame(maxWidth: .infinity)
                         .background(Color.red)
                         .foregroundColor(.white)
                         .cornerRadius(8)

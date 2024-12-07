@@ -8,6 +8,10 @@
 import Foundation
 
 class MockFirebaseManager: FirebaseManagerProtocol {
+    func getUserEmail() -> String? {
+        return "test@test.com"
+    }
+    
     var shouldFail = false
 
     func signIn(email: String, password: String) async throws {

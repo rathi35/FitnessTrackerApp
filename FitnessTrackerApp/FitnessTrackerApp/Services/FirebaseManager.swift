@@ -13,6 +13,7 @@ protocol FirebaseManagerProtocol {
     func signUp(email: String, password: String) async throws
     func signOut() throws
     func isLoggedIn() -> Bool
+    func getUserEmail() -> String?
 }
 
 class FirebaseManager: FirebaseManagerProtocol {
@@ -34,5 +35,9 @@ class FirebaseManager: FirebaseManagerProtocol {
 
     func isLoggedIn() -> Bool {
         return Auth.auth().currentUser != nil
+    }
+    
+    func getUserEmail() -> String? {
+        return Auth.auth().currentUser?.email
     }
 }

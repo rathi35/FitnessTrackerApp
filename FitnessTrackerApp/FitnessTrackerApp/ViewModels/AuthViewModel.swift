@@ -13,6 +13,10 @@ class AuthViewModel: ObservableObject {
     // MARK: - Published Properties
     @Published var isAuthenticated: Bool = false
     @Published var errorMessage: String? = nil
+    
+    var currentUserEmail: String? {
+        firebaseManager.getUserEmail()
+    }
 
     // MARK: - Dependencies
     private let firebaseManager: FirebaseManagerProtocol

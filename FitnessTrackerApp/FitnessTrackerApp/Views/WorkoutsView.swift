@@ -32,9 +32,9 @@ struct WorkoutsView: View {
                     }) {
                         Text("Add Your First Workout")
                             .font(.body)
-                            .foregroundColor(.blue)
+                            .foregroundColor(.purple)
                             .padding()
-                            .background(RoundedRectangle(cornerRadius: 8).stroke(Color.blue, lineWidth: 1))
+                            .background(RoundedRectangle(cornerRadius: 8).stroke(Color.purple, lineWidth: 1))
                     }
                 } else {
                     // Display a list of workouts if available
@@ -43,30 +43,30 @@ struct WorkoutsView: View {
                             // Workout Name
                             Text(workout.name ?? "Unnamed Workout")
                                 .font(.headline)
+                                .foregroundColor(.purple)
                             
                             // Workout Type
                             Text("Type: \(workout.type ?? "Unknown")")
                                 .font(.subheadline)
-                                .foregroundColor(.gray)
+                                .foregroundColor(.purple)
                             
                             // Workout Duration
-                            Text("Duration: \(workout.duration) minutes")
+                            Text("Duration: \(workout.duration, specifier: "%.2f") minutes")
                                 .font(.subheadline)
-                                .foregroundColor(.gray)
+                                .foregroundColor(.purple)
                             
                             // Calories Burned
-                            Text("Calories Burned: \(workout.caloriesBurned) kcal")
+                            Text("Calories Burned: \(workout.caloriesBurned, specifier: "%.2f") kcal")
                                 .font(.subheadline)
-                                .foregroundColor(.gray)
+                                .foregroundColor(.purple)
                             
                             // Workout Date (Formatted)
                             Text("Date: \(formattedDate(workout.date ?? Date()))")
                                 .font(.subheadline)
-                                .foregroundColor(.gray)
+                                .foregroundColor(.purple)
                         }
                         .padding(.vertical, 8) // Add vertical padding to each item
                     }
-                    .listStyle(PlainListStyle()) // Remove default list style
                 }
             }
             // Set the navigation bar title to "Workouts"
@@ -90,9 +90,9 @@ struct WorkoutsView: View {
             }) {
                 Text("Add New Goal")
                     .font(.headline)
-                    .foregroundColor(.blue)
+                    .foregroundColor(.purple)
                     .padding()
-                    .background(Color.blue.opacity(0.1))
+                    .background(Color.purple.opacity(0.1))
                     .cornerRadius(8)
             }
             .padding()
